@@ -1,10 +1,8 @@
 public class Main {
   public static void main(String[] args) {
-    Car exampleCar = new Car(10, 2, "SUV", 3);
+    Subaru exampleSubaru = new Subaru(true, "orange");
 
-    exampleCar.steer();
-    System.out.println("Current speed: " + exampleCar.getSpeed());
-    exampleCar.increaseSpeed();
-    exampleCar.move();
+    exampleSubaru.move();
+    exampleSubaru.beRugged();
   }
 }
