@@ -5,6 +5,21 @@ public class BankAccount {
   private String email;
   private String phoneNumber;
 
+  // Constructor
+  public BankAccount(
+    long accountNumber,
+    double balance,
+    String customerName,
+    String email,
+    String phoneNumber
+  ) {
+    this.accountNumber = accountNumber;
+    this.balance = balance;
+    this.customerName = customerName;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+  }
+
   // Additional Methods
   public double depositFunds(double amount) {
     this.balance += amount;
