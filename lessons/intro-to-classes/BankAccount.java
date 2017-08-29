@@ -1,9 +1,9 @@
 public class BankAccount {
-  long accountNumber;
-  double balance;
-  String customerName;
-  String email;
-  String phoneNumber;
+  private long accountNumber;
+  private double balance;
+  private String customerName;
+  private String email;
+  private String phoneNumber;
 
   // Additional Methods
   public double depositFunds(double amount) {
