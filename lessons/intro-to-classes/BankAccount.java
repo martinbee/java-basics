@@ -7,9 +7,11 @@ public class BankAccount {
 
   // Additional Methods
   public double depositFunds(double amount) {
-    System.out.println("Depositing $" + amount);
-
     this.balance += amount;
+
+    System.out.println(
+      "Depositing $" + amount + "; new balance is $" + this.balance
+    );
 
     return this.balance;
   }
@@ -20,9 +22,13 @@ public class BankAccount {
     System.out.println("Attempting to withdraw $" + amount);
 
     if (isBalanceLargeEnoughToWithdraw) {
-      System.out.println("Successfully withdrew $" + amount);
 
       this.balance -= amount;
+
+      System.out.println(
+        "Successfully withdrew $" + amount +
+        "; new balance is $" + this.balance
+      );
 
       return this.balance;
     }
