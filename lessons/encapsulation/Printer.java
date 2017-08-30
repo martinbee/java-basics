@@ -41,11 +41,15 @@ public class Printer {
     if (newTonerLevel < 0) {
       System.out.println("Not enough toner, please fill up or print less pages.");
     } else {
-      System.out.println("Printing " + numberOfPages + " pages.");
+      int pagesToPrint = isDuplex ? numberOfPages / 2 : numberOfPages;
+
+      if (isDuplex) System.out.println("Printing in duplex mode.");
+
+      System.out.println("Printing " + pagesToPrint + " pages.");
       System.out.println("Toner level is now " + newTonerLevel);
 
       this.tonerLevel = newTonerLevel;
-      this.numberOfPagesPrinted += numberOfPages;
+      this.numberOfPagesPrinted += pagesToPrint;
     }
   }
 

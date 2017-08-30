@@ -1,9 +1,9 @@
 public class Main {
   public static void main(String[] args) {
-    Printer x400 = new Printer(100, 0, false);
+    Printer x400 = new Printer(100, 0, true);
 
     System.out.println("The current number of pages printed " + x400.getNumberOfPagesPrinted());
-    x400.print(9);
+    x400.print(10);
     System.out.println("The current number of pages printed " + x400.getNumberOfPagesPrinted());
     x400.fillUpToner(10);
   }
