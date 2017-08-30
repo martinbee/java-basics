@@ -15,6 +15,12 @@ public class Room {
     door.closeDoor();
   }
 
+  public void openRoom() {
+    System.out.println("Opening room!");
+    window.openBlinds();
+    door.openDoor();
+  }
+
   public Window getWindow() {
     return window;
   }

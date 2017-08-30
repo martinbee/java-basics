@@ -11,5 +11,23 @@ public class Window {
 
   public void closeBlinds() {
     System.out.println("The window's blinds have been closed!");
+    this.isOpen = false;
+  }
+
+  public void openBlinds() {
+    System.out.println("The window's blinds have been opened!");
+    this.isOpen = true;
+  }
+
+  public Dimensions getDimensions() {
+    return dimensions;
+  }
+
+  public boolean getIsOpen() {
+    return isOpen;
+  }
+
+  public String getWindowStyle() {
+    return windowStyle;
   }
 }
