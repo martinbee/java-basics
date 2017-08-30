@@ -3,6 +3,8 @@ public class Main {
     Subaru exampleSubaru = new Subaru(true, "orange");
 
     exampleSubaru.move();
+    exampleSubaru.increaseSpeed();
+    exampleSubaru.move();
     exampleSubaru.beRugged();
   }
 }

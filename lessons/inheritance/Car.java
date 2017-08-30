@@ -17,19 +17,19 @@ public class Car extends Vehicle {
     this.currentGear += 1;
     System.out.println("Shifting gears up!");
 
-    super.setSpeed(super.getSpeed() + 1);
+    setSpeed(getSpeed() + 1);
   }
 
   public void decreaseSpeed() {
     this.currentGear -= 1;
     System.out.println("Shifting gears down!");
 
-    super.setSpeed(super.getSpeed() - 1);
+    setSpeed(getSpeed() - 1);
   }
 
   @Override
   public void move() {
-    System.out.println("Car is moving at a speed of " + super.getSpeed());
+    System.out.println("Car is moving at a speed of " + getSpeed());
     super.move();
   }
 
