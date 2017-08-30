@@ -2,14 +2,26 @@ public class Main {
   public static void main(String[] args) {
     System.out.println("Hello, welcome to Bill's Burgers!");
 
-    Burger plainBurger = new Burger("wheat", "beef", "plan", 2.00);
+    Burger plainBurger = new Burger("wheat", "beef", "plain", 2.00);
 
-    plainBurger.getBalance();
     plainBurger.addAddition("lettuce", 0.50, 1);
     plainBurger.addAddition("pickles", 0.50, 2);
     plainBurger.addAddition("tomatoes", 0.50, 3);
     plainBurger.addAddition("avocado", 1.50, 4);
-    plainBurger.getBalance();
+    plainBurger.getBalance(plainBurger.getAdditions());
+
+    DeluxeBurger deluxeBurger = new DeluxeBurger("white", "beef", "deluxe", 2.00);
+    deluxeBurger.addAddition("Test", 1.00, 1);
+    deluxeBurger.getBalance();
+
+    HealthyBurger healthyBurger = new HealthyBurger("Turkey", "healthy", 3.00);
+    healthyBurger.addAddition("lettuce", 0.50, 1);
+    healthyBurger.addAddition("avocado", 1.50, 2);
+    healthyBurger.addAddition("sprouts", 0.75, 3);
+    healthyBurger.addAddition("tomatoes", 0.50, 4);
+    healthyBurger.addAddition("hot sauce", 0.50, 5);
+    healthyBurger.addAddition("protein powder", 0.50, 6);
+    healthyBurger.getBalance();
   }
 }
 
@@ -27,6 +39,7 @@ public class Main {
 // This burger has a base price and the additions are all seperately priced.
 // Create a Hamburger class to deal with all the above.
 // The constructor should only include the roll type, meat and price.
+//
 // Also create two extra varieties of Hamburgers (classes) to cater for
 // a) Healthy burger (on a brown rye bread roll), plus two addition items can be added.
 // The healthy burger can have a total of 6 items (Additions) in total.
