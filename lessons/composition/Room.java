@@ -8,4 +8,14 @@ public class Room {
     this.window = window;
     this.dimensions = dimensions;
   }
+
+  public void secureRoom() {
+    System.out.println("Securing room!");
+    window.closeBlinds();
+    door.closeDoor();
+  }
+
+  public Window getWindow() {
+    return window;
+  }
 }
