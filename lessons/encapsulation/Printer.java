@@ -1,14 +1,14 @@
 public class Printer {
   int tonerLevel = 100;
-  int numberOfPagesPrinted;
+  int numberOfPagesPrinted = 0;
   boolean isDuplex;
 
   public Printer(int tonerLevel, int numberOfPagesPrinted, boolean isDuplex) {
     boolean isTonerLevelValid = tonerLevel >= 0 && tonerLevel <= 100;
 
     if (isTonerLevelValid) this.tonerLevel = tonerLevel;
+    if (numberOfPagesPrinted >= 0) this.numberOfPagesPrinted = numberOfPagesPrinted;
 
-    this.numberOfPagesPrinted = numberOfPagesPrinted;
     this.isDuplex = isDuplex;
   }
 
@@ -41,11 +41,19 @@ public class Printer {
     if (newTonerLevel < 0) {
       System.out.println("Not enough toner, please fill up or print less pages.");
     } else {
-      System.out.println("Printing " + numberOfPages + "pages.");
+      System.out.println("Printing " + numberOfPages + " pages.");
       System.out.println("Toner level is now " + newTonerLevel);
 
       this.tonerLevel = newTonerLevel;
       this.numberOfPagesPrinted += numberOfPages;
     }
+  }
+
+  public int getTonerLevel() {
+    return tonerLevel;
+  }
+
+  public int getNumberOfPagesPrinted() {
+    return numberOfPagesPrinted;
   }
 }
