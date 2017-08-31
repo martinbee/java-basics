@@ -1,6 +1,5 @@
 import java.util.Scanner;
-
-// don't use Arrays methods
+import java.util.Arrays;
 
 public class Main {
   private static Scanner scanner = new Scanner(System.in);
@@ -44,32 +43,22 @@ public class Main {
   }
 
   public static int[] sortIntegers(int[] unsortedArray) {
-    // Don't want to mutate original array and for challenge can't use Arrays
-    // methods
-    int[] unsortedArrayCopy = new int[unsortedArray.length];
-    int[] sortedArray = new int[unsortedArray.length];
+    int[] sortedArray = Arrays.copyOf(unsortedArray, unsortedArray.length);
 
-    for (int i = 0; i < unsortedArray.length; i++) {
-      unsortedArrayCopy[i] = unsortedArray[i];
-    }
+    boolean flag = true;
+    int temp;
 
-    for (int i = 0; i < unsortedArrayCopy.length; i++) {
-      int currentIndex = i;
-      int nextIndex = i + 1;
-      int highestNumberYet = unsortedArrayCopy[i];
-      int highestNumberYetIndex = i;
+    while(flag) {
+      flag = false;
 
-      for (int index = 0; index < unsortedArrayCopy.length; index++) {
-        int comparisonNumber = unsortedArrayCopy[index];
-
-        if (highestNumberYet < comparisonNumber) {
-          highestNumberYet = comparisonNumber;
-          highestNumberYetIndex = index;
+      for (int i = 0; i < sortedArray.length - 1; i++) {
+        if (sortedArray[i] < sortedArray[i + 1]) {
+          temp = sortedArray[i];
+          sortedArray[i] = sortedArray[i + 1];
+          sortedArray[i + 1] = temp;
+          flag = true;
         }
       }
-
-      sortedArray[i] = highestNumberYet;
-      unsortedArrayCopy[highestNumberYetIndex] = 0;
     }
 
     return sortedArray;
