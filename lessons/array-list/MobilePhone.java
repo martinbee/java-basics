@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class MobilePhone {
   private Scanner scanner = new Scanner(System.in);
+  private boolean contactAppRunning = false;
 
   public void openContactsApp() {
     System.out.println("Opening up the contacts app...\n");
@@ -10,14 +11,11 @@ public class MobilePhone {
   }
 
   public void runContactsApp() {
-    boolean programRunning = true;
+    contactAppRunning = true;
 
-    while (programRunning) {
+    while (contactAppRunning) {
       printOptions();
-      String response = getUserResponse();
-      System.out.println(response);
-
-      programRunning = false;
+      handleSelection();
     }
   }
 
@@ -28,11 +26,39 @@ public class MobilePhone {
     System.out.println("3: remove contact.");
     System.out.println("4: find contact info.");
     System.out.println("5: list all contacts.");
-    System.out.println("6: quit contact app.");
+    System.out.println("6: quit contact app.\n");
   }
 
-  public String getUserResponse() {
-    return scanner.nextLine();
+  public int getUserOptionSelection() {
+    return scanner.nextInt();
+  }
+
+  public void handleSelection() {
+    int userSelection = getUserOptionSelection();
+
+    switch (userSelection) {
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        handleQuitting();
+        break;
+      default:
+        System.out.println("Option not recognized. It's not us, it's you.\n");
+        break;
+    }
+  }
+
+  public void handleQuitting() {
+    System.out.println("Shutting down contacts app...");
+    contactAppRunning = false;
   }
 }
 
