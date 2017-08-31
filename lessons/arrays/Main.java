@@ -29,8 +29,10 @@ public class Main {
   }
 
   public static void printArray(int[] array) {
-    for(int number : array) {
-      System.out.println(number);
+    for (int i = 0; i < array.length; i++) {
+      int arrayItem = array[i];
+
+      System.out.println("At index " + i + " int " + arrayItem);
     }
   }
 
