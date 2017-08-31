@@ -32,4 +32,12 @@ public class GroceryList {
       System.out.println((i + 1) + ". " + item);
     }
   }
+
+  public String findItem(String item) {
+    int positionOfItem = groceryList.indexOf(item);
+
+    if (positionOfItem == -1) return null;
+
+    return groceryList.get(positionOfItem);
+  }
 }

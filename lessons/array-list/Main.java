@@ -12,5 +12,8 @@ public class Main {
 
     myGroceryList.modifyItem(0, "Candy");
     myGroceryList.printList();
+
+    System.out.println(myGroceryList.findItem("Candy"));
+    System.out.println(myGroceryList.findItem("Test"));
   }
 }
