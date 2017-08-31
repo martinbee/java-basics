@@ -4,13 +4,28 @@ public class Main {
   private static Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
-    System.out.println("Please enter how many numbers you'd like your array to be.");
-    int arraySize = scanner.nextInt();
-    System.out.println(arraySize);
+    int arraySize = getArraySize();
+    int[] unsortedArray = getIntegers(arraySize);
 
-    //int[] unsortedArray = getIntegers(arraySize);
+    printArray(unsortedArray);
+  }
 
-    //printArray(unsortedArray);
+  public static int getArraySize() {
+    System.out.println("Please enter how many numbers you'd like your array to be.\r");
+
+    return scanner.nextInt();
+  }
+
+  public static int[] getIntegers(int arraySize) {
+    System.out.println("Please enter " + arraySize + " integers to fill your array.\r");
+
+    int[] integers = new int[arraySize];
+
+    for (int i = 0; i < arraySize; i++) {
+      integers[i] = scanner.nextInt();
+    }
+
+    return integers;
   }
 
   public static void printArray(int[] array) {
@@ -18,11 +33,6 @@ public class Main {
       System.out.println(number);
     }
   }
-
-  //public static int[] getIntegers(int number) {
-    //System.out.println("");
-
-  //}
 
   //public static int[] sortIntegers(int[] unsortedArray) {
 
