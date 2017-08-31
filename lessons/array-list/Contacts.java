@@ -15,8 +15,8 @@ public class Contacts {
     }
   }
 
-  public void printOptions() {
-    System.out.println("Select an option from the list below:");
+  private void printOptions() {
+    System.out.println("\nSelect an option from the list below:");
     System.out.println("1: add new contact.");
     System.out.println("2: update existing contact.");
     System.out.println("3: remove contact.");
@@ -25,15 +25,46 @@ public class Contacts {
     System.out.println("6: quit contact app.\n");
   }
 
-  public int getUserOptionSelection() {
+  private int getUserOptionSelection() {
     return scanner.nextInt();
   }
 
-  public String getUserTextInput() {
+  private String getUserTextInput() {
     return scanner.next();
   }
 
-  public void handleSelection() {
+  private int findContactByName(String name) {
+    for (Contact contact : myContacts) {
+      boolean namesMatch = contact.getName().equals(name);
+
+      if (namesMatch) return 1;
+    }
+
+    return -1;
+  }
+
+  private int findContact(Contact newContact) {
+    return this.myContacts.indexOf(newContact);
+  }
+
+  private boolean doesContactAlreadyExist(Contact newContact) {
+    boolean notInContactList = findContactByName(newContact.getName()) == -1;
+
+    if (notInContactList) return false;
+
+    return true;
+  }
+
+  private void addContact(Contact newContact) {
+    myContacts.add(newContact);
+
+    System.out.println(
+      "Adding " + newContact.getName() + " with number " +
+      newContact.getNumber() + " in your contacts."
+    );
+  }
+
+  private void handleSelection() {
     int userSelection = getUserOptionSelection();
 
     switch (userSelection) {
@@ -61,18 +92,23 @@ public class Contacts {
     }
   }
 
-  public void handleAddNewContact() {
+  private void handleAddNewContact() {
     System.out.println("Enter new contact name:");
     String name = getUserTextInput();
 
     System.out.println("Enter new contact number:");
     String number = getUserTextInput();
 
-    // make new contact then add to list if not already in list
-    System.out.println("Adding " + name + " with number " + number + " to contacts.");
+    Contact newContact = new Contact(name, number);
+
+    if (doesContactAlreadyExist(newContact)) {
+      System.out.println("A contact with name " + name + " already exists");
+    } else {
+      addContact(newContact);
+    }
   }
 
-  public void handleUpdateContact() {
+  private void handleUpdateContact() {
     System.out.println("Enter the name of the contact that you wish to update:");
     String contactToUpdate = getUserTextInput();
 
@@ -83,25 +119,41 @@ public class Contacts {
     System.out.println("Updating " + contactToUpdate);
   }
 
-  public void handleRemoveContact() {
+  private void handleRemoveContact() {
+    // broken
     System.out.println("Enter the name of the contact that you wish to remove:");
     String contactToRemove = getUserTextInput();
 
     System.out.println("Removing " + contactToRemove);
-    // remove contact with that name
+
+    int positionToRemove = findContactByName(contactToRemove);
+    System.out.println(positionToRemove);
+    myContacts.remove(positionToRemove);
   }
 
-  public void handleFindContact() {
+  private Contact handleFindContact() {
     System.out.println("Enter the name of the contact that you wish to find:");
     String contactToFind = getUserTextInput();
 
     System.out.println("Finding " + contactToFind);
-    // display name and number
+
+    int contactPosition = findContactByName(contactToFind);
+
+    if (contactPosition == -1) {
+      System.out.println("Could not find contact with name " + contactToFind);
+      return null;
+    }
+
+    Contact foundContact = myContacts.get(contactPosition);
+
+    System.out.println("Name: " + foundContact.getName() + ", Number: " + foundContact.getNumber());
+
+    return foundContact;
   }
 
-  public void handleListAllContacts() {
+  private void handleListAllContacts() {
     if (myContacts.size() == 0) {
-      System.out.println("You have not added any contacts.");
+      System.out.println("You have not added any contacts.\n");
     } else {
       System.out.println("Your contacts:");
 
@@ -111,7 +163,7 @@ public class Contacts {
     }
   }
 
-  public void handleQuitting() {
+  private void handleQuitting() {
     System.out.println("Shutting down contacts app...");
     running = false;
   }
