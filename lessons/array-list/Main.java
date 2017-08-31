@@ -5,7 +5,12 @@ public class Main {
     myGroceryList.addItem("Carrots");
     myGroceryList.addItem("Bread");
     myGroceryList.addItem("Milk");
+    myGroceryList.printList();
 
+    myGroceryList.removeItem(0);
+    myGroceryList.printList();
+
+    myGroceryList.modifyItem(0, "Candy");
     myGroceryList.printList();
   }
 }

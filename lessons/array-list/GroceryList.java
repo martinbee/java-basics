@@ -7,6 +7,22 @@ public class GroceryList {
     groceryList.add(item);
   }
 
+  public void modifyItem(int position, String newItem) {
+    String itemToModify = groceryList.get(position);
+
+    System.out.println("Replacing " + itemToModify + " with " + newItem);
+
+    groceryList.set(position, newItem);
+  }
+
+  public void removeItem(int position) {
+    String itemToRemove = groceryList.get(position);
+
+    System.out.println("Removing " + itemToRemove + " from your list.");
+
+    groceryList.remove(position);
+  }
+
   public void printList() {
     System.out.println("You have " + groceryList.size() + " items in your list:");
 
