@@ -37,7 +37,7 @@ public class Contacts {
     for (Contact contact : myContacts) {
       boolean namesMatch = contact.getName().equals(name);
 
-      if (namesMatch) return 1;
+      if (namesMatch) return myContacts.indexOf(contact);
     }
 
     return -1;
@@ -109,38 +109,53 @@ public class Contacts {
   }
 
   private void handleUpdateContact() {
-    System.out.println("Enter the name of the contact that you wish to update:");
-    String contactToUpdate = getUserTextInput();
+    System.out.println("\nEnter the name of the contact that you wish to update:");
+    String name = getUserTextInput();
 
-    // find contact
-    // if no contact error
-    // ask if name or number needs to be updated
-    // ask for new value and update
-    System.out.println("Updating " + contactToUpdate);
+    int contactToUpdatePosition = findContactByName(name);
+
+    if (contactToUpdatePosition == -1) {
+      System.out.println("No contact found matching name " + name);
+    } else {
+      System.out.println("Updated name:");
+      String updatedName = getUserTextInput();
+
+      System.out.println("Updated number:");
+      String updatedNumber = getUserTextInput();
+
+      System.out.println("Updating " + name);
+      Contact updatedContact = new Contact(updatedName, updatedNumber);
+
+      myContacts.set(contactToUpdatePosition, updatedContact);
+    }
   }
 
   private void handleRemoveContact() {
-    // broken
     System.out.println("Enter the name of the contact that you wish to remove:");
     String contactToRemove = getUserTextInput();
 
-    System.out.println("Removing " + contactToRemove);
+    System.out.println("\nRemoving " + contactToRemove);
 
     int positionToRemove = findContactByName(contactToRemove);
-    System.out.println(positionToRemove);
-    myContacts.remove(positionToRemove);
+
+    if (positionToRemove == -1) {
+      System.out.println("No contact found with name: " + contactToRemove);
+    } else {
+      myContacts.remove(positionToRemove);
+    }
   }
 
   private Contact handleFindContact() {
     System.out.println("Enter the name of the contact that you wish to find:");
     String contactToFind = getUserTextInput();
 
-    System.out.println("Finding " + contactToFind);
+    System.out.println("\nFinding " + contactToFind);
 
     int contactPosition = findContactByName(contactToFind);
 
     if (contactPosition == -1) {
-      System.out.println("Could not find contact with name " + contactToFind);
+      System.out.println("Could not find contact with name: " + contactToFind);
+
       return null;
     }
 
@@ -153,9 +168,9 @@ public class Contacts {
 
   private void handleListAllContacts() {
     if (myContacts.size() == 0) {
-      System.out.println("You have not added any contacts.\n");
+      System.out.println("\nYou have not added any contacts.");
     } else {
-      System.out.println("Your contacts:");
+      System.out.println("\nYour contacts:");
 
       for (Contact contact : myContacts) {
         System.out.println("Name: " + contact.getName() + ", Number: " + contact.getNumber());
