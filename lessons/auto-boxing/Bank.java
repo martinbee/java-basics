@@ -1,5 +1,33 @@
-public class Bank {
+import java.util.ArrayList;
 
+public class Bank {
+  private ArrayList<Branch> branches = new ArrayList<Branch>();
+
+  public boolean addNewBranch(String branchName) {
+    // Add a new branch
+    // check if branch exists already
+    // if not:
+    branches.add(new Branch(branchName));
+  }
+
+  public boolean addNewCustomerToBranch() {
+    // Add a customer to that branch with initial transaction
+    // find branch using method on bank
+    // call method on found branch class to add new customer
+  }
+
+  public boolean addTransaction(String branchName, String customerName, double transaction) {
+    // find branch then pass customer name and transaction to method on branch
+
+  }
+
+  public void printCustomerList(String branchName, boolean transactions) {
+    // Show a list of customers for a particular branch and optionally a list
+    // of their transactions
+    System.out.println("Print c list");
+
+    if (transactions) System.out.println("Print t list");
+  }
 }
 
 // arraylist of branches
