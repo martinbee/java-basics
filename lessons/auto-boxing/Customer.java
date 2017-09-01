@@ -20,6 +20,10 @@ public class Customer {
       System.out.println(transaction);
     }
   }
+
+  public String getName() {
+    return name;
+  }
 }
 
 // The Customer class should have an arraylist of Doubles (transactions)
