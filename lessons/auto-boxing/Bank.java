@@ -74,10 +74,14 @@ public class Bank {
   }
 
   public void printBranchList() {
-    System.out.println("Bank " + name + " has branches:");
+    if (branches.size() == 0) {
+      System.out.println("Bank " + name + " has no branches.");
+    } else {
+      System.out.println("Bank " + name + " has branches:");
 
-    for (Branch branch : branches) {
-      System.out.println("Branch: " + branch.getName());
+      for (Branch branch : branches) {
+        System.out.println("Branch: " + branch.getName());
+      }
     }
   }
 }
