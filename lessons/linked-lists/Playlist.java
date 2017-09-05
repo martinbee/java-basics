@@ -32,14 +32,21 @@ public class Playlist {
 
   public void play() {
     Scanner scanner = new Scanner(System.in);
-    boolean quit = false;
     ListIterator<Song> listIterator = songs.listIterator();
-    System.out.println("\nPlaylist " + name + " is playing " + listIterator.next().getTitle());
 
+    boolean quit = false;
+    boolean goingForwards = true;
+
+    if (songs.isEmpty()) {
+      System.out.println("No songs in playlist " + name + ". Add songs and try again. Exiting...");
+
+      return;
+    }
+
+    System.out.println("\nPlaylist " + name + " is playing " + listIterator.next().getTitle());
     printOptions();
 
     while (!quit) {
-
       int selection = scanner.nextInt();
       scanner.nextLine();
 
@@ -50,6 +57,15 @@ public class Playlist {
 
           break;
         case 1:
+          if (!goingForwards) {
+            if (listIterator.hasNext()) {
+              listIterator.next();
+            }
+
+            goingForwards = true;
+          }
+
+          System.out.println("Breaks?");
           if (listIterator.hasNext()) {
             System.out.println("\nNow playing " + listIterator.next().getTitle());
           } else {
@@ -58,6 +74,14 @@ public class Playlist {
 
           break;
         case 2:
+          if (goingForwards) {
+            if (listIterator.hasPrevious()) {
+              listIterator.previous();
+            }
+
+            goingForwards = false;
+          }
+
           if (listIterator.hasPrevious()) {
             System.out.println("\nNow playing " + listIterator.previous().getTitle());
           } else {
@@ -65,17 +89,70 @@ public class Playlist {
           }
 
           break;
-        case 3:
-          // restart
-          // check if going forwards or backwards and get name to repeat
-          System.out.println("\nRestart");
+        case 3: {
+          Song currentSong;
+
+
+          //if (goingForwards) {
+            //if (listIterator.hasPrevious()) {
+              //currentSong = listIterator.previous();
+              //listIterator.next();
+            //} else {
+              //currentSong = listIterator.next();
+              //listIterator.previous();
+            //}
+          //} else {
+            //if (listIterator.hasNext()) {
+              //currentSong = listIterator.next();
+              //listIterator.previous();
+            //} else {
+              //currentSong = listIterator.previous();
+              //listIterator.next();
+            //}
+          //}
+          if (goingForwards) {
+            currentSong = listIterator.previous();
+            listIterator.next();
+          } else {
+            currentSong = listIterator.next();
+            listIterator.previous();
+          }
+
+          System.out.println("\nRestarting " + currentSong.getTitle() + "...");
           break;
+        }
         case 4:
           listSongs();
           break;
-        case 5:
-          // 5 remove currentSong
+        case 5: {
+          Song currentSong;
+
+          if (goingForwards) {
+            currentSong = listIterator.previous();
+          } else {
+            currentSong = listIterator.next();
+          }
+
+          listIterator.remove();
+
+          if (goingForwards) {
+            if (listIterator.hasPrevious()) {
+              listIterator.previous();
+            } else {
+              listIterator.next();
+            }
+          } else {
+            if (listIterator.hasNext()) {
+              listIterator.next();
+            } else {
+              listIterator.previous();
+            }
+          }
+
+          System.out.println("Removed song " + currentSong.getTitle() + " from playlist.");
+
           break;
+        }
         default:
           printOptions();
           break;
@@ -99,7 +176,5 @@ public class Playlist {
   }
 }
 
-// Hint:  To replay a song, consider what happened when we went back and forth from a city before we
-// started tracking the direction we were going.
 // As an optional extra, provide an option to remove the current song from the playlist
 // (hint: listiterator.remove()
