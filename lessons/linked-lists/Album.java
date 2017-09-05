@@ -17,5 +17,3 @@ public class Album {
     return null;
   }
 }
-
-// The program will have an Album class containing a list of songs.

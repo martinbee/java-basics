@@ -25,6 +25,18 @@ public class Main {
     Album ultuUlla = new Album("Ultu Ulla", ultuUllaSongs);
 
     myAlbums.add(ultuUlla);
+
+    Playlist workoutTunes = new Playlist("Workout Tunes");
+
+    addSongToPlaylist("Senseless Massacre", workoutTunes);
+    addSongToPlaylist("Lalassu Xul", workoutTunes);
+    addSongToPlaylist("Infused", workoutTunes);
+    addSongToPlaylist("Servant of this Sentience", workoutTunes);
+    addSongToPlaylist("Immemorial Essence", workoutTunes);
+    addSongToPlaylist("Parallel Shift", workoutTunes);
+    addSongToPlaylist("Test", workoutTunes);
+
+    workoutTunes.listSongs();
   }
 
   private static Song getSong(String songTitle) {
@@ -37,17 +49,24 @@ public class Main {
     System.out.println("No song with title " + songTitle + " was found.");
     return null;
   }
+
+  private static boolean addSongToPlaylist(String songTitle, Playlist playlist) {
+    Song song = getSong(songTitle);
+
+    if (song != null) {
+      playlist.addSong(song);
+
+      return true;
+    }
+
+    return false;
+  }
 }
 
-// Create a program that implements a playlist for songs
-// The albums will be stored in an ArrayList
-// Songs from different albums can be added to the playlist and will appear in the list in the order
-// they are added.
+
 // Once the songs have been added to the playlist, create a menu of options to:-
 // Quit,Skip forward to the next song, skip backwards to a previous song.  Replay the current song.
 // List the songs in the playlist
-// A song must exist in an album before it can be added to the playlist (so you can only play songs that
-// you own).
 // Hint:  To replay a song, consider what happened when we went back and forth from a city before we
 // started tracking the direction we were going.
 // As an optional extra, provide an option to remove the current song from the playlist
