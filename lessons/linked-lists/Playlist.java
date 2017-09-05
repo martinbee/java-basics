@@ -16,7 +16,7 @@ public class Playlist {
   }
 
   private void listSongs() {
-    System.out.println("Playlist " + name + " has these songs:\n");
+    System.out.println("\nPlaylist " + name + " has these songs:\n");
 
     Iterator<Song> iterator = songs.iterator();
 
@@ -32,24 +32,59 @@ public class Playlist {
 
   public void play() {
     Scanner scanner = new Scanner(System.in);
+    boolean quit = false;
+    ListIterator<Song> listIterator = songs.listIterator();
+    System.out.println("\nPlaylist " + name + " is playing " + listIterator.next().getTitle());
 
     printOptions();
 
-    int selection = scanner.nextInt();
-    scanner.nextLine();
+    while (!quit) {
 
-    System.out.println(selection);
+      int selection = scanner.nextInt();
+      scanner.nextLine();
+
+      switch (selection) {
+        case 0:
+          System.out.println("\nStopping playlist " + name + "...");
+          quit = true;
+
+          break;
+        case 1:
+          if (listIterator.hasNext()) {
+            System.out.println("\nNow playing " + listIterator.next().getTitle());
+          } else {
+            System.out.println("\nNo more songs in playlist.");
+          }
+
+          break;
+        case 2:
+          if (listIterator.hasPrevious()) {
+            System.out.println("\nNow playing " + listIterator.previous().getTitle());
+          } else {
+            System.out.println("\nAt beginning of playlist.");
+          }
+
+          break;
+        case 3:
+          // restart
+          // check if going forwards or backwards and get name to repeat
+          System.out.println("\nRestart");
+          break;
+        case 4:
+          listSongs();
+          break;
+        case 5:
+          // 5 remove currentSong
+          break;
+        default:
+          printOptions();
+          break;
+      }
+    }
   }
 
-// 0 quit
-// 1 skip forwards
-// 2 skip backwards
-// 3 restart current song
-// 4 list songs
-// 5 remove currentSong
   private void printOptions() {
     System.out.println("\nPlaylist Options\n");
-    System.out.println("Press your selection:\n");
     System.out.println("0 - stop playing playlist.");
     System.out.println("1 - skip forwards.");
     System.out.println("2 - skip backwards.");
