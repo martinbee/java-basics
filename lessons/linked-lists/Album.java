@@ -9,12 +9,12 @@ public class Album {
     this.songs = songs;
   }
 
-  public boolean hasSong(String songTitle) {
+  public Song getSong(String songTitle) {
     for (Song song : songs) {
-      if (song.getTitle().equals(songTitle)) return true;
+      if (song.getTitle().equals(songTitle)) return song;
     }
 
-    return false;
+    return null;
   }
 }
 
