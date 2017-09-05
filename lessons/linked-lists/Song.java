@@ -1,8 +1,8 @@
 public class Song {
   private String title;
-  private double duration;
+  private String duration;
 
-  public Song(String title, double duration) {
+  public Song(String title, String duration) {
     this.title = title;
     this.duration = duration;
   }
@@ -11,7 +11,7 @@ public class Song {
     return title;
   }
 
-  public double getDuration() {
+  public String getDuration() {
     return duration;
   }
 }
