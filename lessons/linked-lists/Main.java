@@ -36,7 +36,7 @@ public class Main {
     addSongToPlaylist("Parallel Shift", workoutTunes);
     addSongToPlaylist("Test", workoutTunes);
 
-    workoutTunes.listSongs();
+    workoutTunes.play();
   }
 
   private static Song getSong(String songTitle) {
@@ -54,6 +54,7 @@ public class Main {
     Song song = getSong(songTitle);
 
     if (song != null) {
+      System.out.println("Adding " + songTitle + " to " + playlist.getName() + ".");
       playlist.addSong(song);
 
       return true;
@@ -62,12 +63,3 @@ public class Main {
     return false;
   }
 }
-
-
-// Once the songs have been added to the playlist, create a menu of options to:-
-// Quit,Skip forward to the next song, skip backwards to a previous song.  Replay the current song.
-// List the songs in the playlist
-// Hint:  To replay a song, consider what happened when we went back and forth from a city before we
-// started tracking the direction we were going.
-// As an optional extra, provide an option to remove the current song from the playlist
-// (hint: listiterator.remove()
