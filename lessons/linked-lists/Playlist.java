@@ -92,24 +92,6 @@ public class Playlist {
         case 3: {
           Song currentSong;
 
-
-          //if (goingForwards) {
-            //if (listIterator.hasPrevious()) {
-              //currentSong = listIterator.previous();
-              //listIterator.next();
-            //} else {
-              //currentSong = listIterator.next();
-              //listIterator.previous();
-            //}
-          //} else {
-            //if (listIterator.hasNext()) {
-              //currentSong = listIterator.next();
-              //listIterator.previous();
-            //} else {
-              //currentSong = listIterator.previous();
-              //listIterator.next();
-            //}
-          //}
           if (goingForwards) {
             currentSong = listIterator.previous();
             listIterator.next();
@@ -134,20 +116,6 @@ public class Playlist {
           }
 
           listIterator.remove();
-
-          if (goingForwards) {
-            if (listIterator.hasPrevious()) {
-              listIterator.previous();
-            } else {
-              listIterator.next();
-            }
-          } else {
-            if (listIterator.hasNext()) {
-              listIterator.next();
-            } else {
-              listIterator.previous();
-            }
-          }
 
           System.out.println("Removed song " + currentSong.getTitle() + " from playlist.");
 
