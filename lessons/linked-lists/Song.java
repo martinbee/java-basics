@@ -6,6 +6,14 @@ public class Song {
     this.title = title;
     this.duration = duration;
   }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public double getDuration() {
+    return duration;
+  }
 }
 
 // Create a Song class having Title and Duration for a song.
