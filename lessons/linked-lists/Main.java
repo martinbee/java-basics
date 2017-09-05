@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -7,12 +8,13 @@ public class Main {
 
   public static void main(String[] args) {
     addInOrder("Saigon");
-    printList();
     addInOrder("Singapore");
     addInOrder("Beijing");
     addInOrder("Hong Kong");
     addInOrder("Zanzibar");
     printList();
+
+    visit();
   }
 
   private static void printList() {
@@ -46,5 +48,59 @@ public class Main {
     listIterator.add(newCity);
 
     return true;
+  }
+
+  private static void visit() {
+    Scanner scanner = new Scanner(System.in);
+    boolean quit = false;
+
+    ListIterator<String> iterator = citiesToVisit.listIterator();
+
+    if (citiesToVisit.isEmpty()) {
+      System.out.println("No cities to visit. Please add some cities.");
+
+      return;
+    } else {
+      System.out.println("Now visiting " + iterator.next());
+      printMenu();
+    }
+
+    while (!quit) {
+      int action = scanner.nextInt();
+      scanner.nextLine();
+
+      switch (action) {
+        case 0:
+          System.out.println("Vacation over.");
+          quit = true;
+          break;
+        case 1:
+          if (iterator.hasNext()) {
+            System.out.println("Now visiting " + iterator.next());
+          } else {
+            System.out.println("Reached end of list!");
+          }
+
+          break;
+        case 2:
+          if (iterator.hasPrevious()) {
+            System.out.println("Now visiting " + iterator.previous());
+          } else {
+            System.out.println("Reached beginning of list!");
+          }
+          break;
+        default:
+          printMenu();
+          break;
+      }
+    }
+  }
+
+  private static void printMenu() {
+    System.out.println("Available actions: \npress ");
+    System.out.println("1 - go to next city");
+    System.out.println("2 - go to previous city");
+    System.out.println("3 - see options again");
+    System.out.println("0 - end vacation");
   }
 }
