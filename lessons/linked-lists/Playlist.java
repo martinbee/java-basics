@@ -106,29 +106,17 @@ public class Playlist {
           listSongs();
           break;
         case 5: {
-          Song currentSong;
-
-          if (goingForwards) {
-            if (listIterator.hasPrevious()) {
-              currentSong = listIterator.previous();
-            } else {
-              currentSong = listIterator.next();
-            }
-          } else {
-            if (listIterator.hasNext()) {
-              currentSong = listIterator.next();
-            } else {
-              currentSong = listIterator.previous();
-            }
-          }
-
           listIterator.remove();
-
-          System.out.println("Removed song " + currentSong.getTitle() + " from playlist.");
 
           if (songs.isEmpty()) {
             System.out.println("No more songs left in playlist. Exiting...");
             quit = true;
+          }
+
+          if (listIterator.hasNext()) {
+            System.out.println("\nNow playing " + listIterator.next().getTitle());
+          } else if (listIterator.hasPrevious()) {
+            System.out.println("\nNow playing " + listIterator.previous().getTitle());
           }
 
           break;
