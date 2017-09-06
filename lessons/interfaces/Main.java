@@ -12,9 +12,11 @@ public class Main {
 
     martin.setHealth(8);
 
-    System.out.println(martin);
+    System.out.println(martin.toString());
 
     martin.setWeapon("Stormbringer");
+
+    System.out.println(martin.toString());
 
     saveObject(martin);
     loadObject(martin);
@@ -22,14 +24,14 @@ public class Main {
     System.out.println(martin);
   }
 
-  public static List<String> readValues() {
-    List<String> values = new ArrayList<String>();
+  public static List<Data> readValues() {
+    List<Data> values = new ArrayList<Data>();
     Scanner scanner = new Scanner(System.in);
 
     boolean quit = false;
 
     System.out.println("Choose\n");
-    System.out.println("1 to enter a string\n");
+    System.out.println("1 to enter a data item");
     System.out.println("0 to quit");
 
     while (!quit) {
@@ -43,11 +45,13 @@ public class Main {
           quit = true;
           break;
         case 1:
-          System.out.print("Enter a string: ");
-          String stringInput = scanner.nextLine();
+          System.out.print("Enter key for data item: ");
+          String key = scanner.nextLine();
 
-          values.add(stringInput);
+          System.out.print("Enter value for data item: ");
+          String value = scanner.nextLine();
 
+          values.add(new Data(key, value));
           break;
       }
     }
@@ -56,15 +60,15 @@ public class Main {
   }
 
   public static void saveObject(ISaveable objectToSave) {
-    List<String> dataToSave = objectToSave.write();
+    List<Data> dataToSave = objectToSave.write();
 
-    for (String dataItem : dataToSave) {
-      System.out.println("Saving " + dataItem + " to storage device");
+    for (Data dataItem : dataToSave) {
+      System.out.println("Saving " + dataItem.toString() + " to storage device");
     }
   }
 
   public static void loadObject(ISaveable objectToLoad) {
-    List<String> values = readValues();
+    List<Data> values = readValues();
 
     objectToLoad.read(values);
   }

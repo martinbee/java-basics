@@ -31,16 +31,16 @@ public class Player implements ISaveable {
       String key = dataItem.getKey();
 
       switch (key) {
-        case "Name":
+        case "name":
           this.name = dataItem.getValue();
           break;
-        case "Weapon":
+        case "weapon":
           this.weapon = dataItem.getValue();
           break;
-        case "Health":
+        case "health":
           this.health = Integer.parseInt(dataItem.getValue());
           break;
-        case "Level":
+        case "level":
           this.level = Integer.parseInt(dataItem.getValue());
           break;
         default:
@@ -54,10 +54,10 @@ public class Player implements ISaveable {
   public List<Data> write() {
     List<Data> dataToSave = new ArrayList<Data>();
 
-    dataToSave.add(new Data("Name", name));
-    dataToSave.add(new Data("Weapon", weapon));
-    dataToSave.add(new Data("Level", String.valueOf(level)));
-    dataToSave.add(new Data("Health", String.valueOf(health)));
+    dataToSave.add(new Data("name", name));
+    dataToSave.add(new Data("weapon", weapon));
+    dataToSave.add(new Data("level", String.valueOf(level)));
+    dataToSave.add(new Data("health", String.valueOf(health)));
 
     return dataToSave;
   }
@@ -66,10 +66,10 @@ public class Player implements ISaveable {
   public String toString() {
     return (
       "Player: {\n" +
-      "Name: " + name + ",\n" +
-      "Weapon: " + weapon + ",\n" +
-      "Level: " + level + ",\n" +
-      "Health: " + health + ",\n" +
+      "  Name: " + name + ",\n" +
+      "  Weapon: " + weapon + ",\n" +
+      "  Level: " + level + ",\n" +
+      "  Health: " + health + ",\n" +
       "};"
     );
   }
