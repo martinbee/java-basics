@@ -1,9 +1,72 @@
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
+    Player martin = new Player("Martin", 10, 2);
 
+    System.out.println(martin.toString());
+
+    saveObject(martin);
+
+    martin.setHealth(8);
+
+    System.out.println(martin);
+
+    martin.setWeapon("Stormbringer");
+
+    saveObject(martin);
+    loadObject(martin);
+
+    System.out.println(martin);
+  }
+
+  public static List<String> readValues() {
+    List<String> values = new ArrayList<String>();
+    Scanner scanner = new Scanner(System.in);
+
+    boolean quit = false;
+
+    System.out.println("Choose\n");
+    System.out.println("1 to enter a string\n");
+    System.out.println("0 to quit");
+
+    while (!quit) {
+      System.out.print("Choose an option: ");
+
+      int choice = scanner.nextInt();
+      scanner.nextLine();
+
+      switch (choice) {
+        case 0:
+          quit = true;
+          break;
+        case 1:
+          System.out.print("Enter a string: ");
+          String stringInput = scanner.nextLine();
+
+          values.add(stringInput);
+
+          break;
+      }
+    }
+
+    return values;
+  }
+
+  public static void saveObject(ISaveable objectToSave) {
+    List<String> dataToSave = objectToSave.write();
+
+    for (String dataItem : dataToSave) {
+      System.out.println("Saving " + dataItem + " to storage device");
+    }
+  }
+
+  public static void loadObject(ISaveable objectToLoad) {
+    List<String> values = readValues();
+
+    objectToLoad.read(values);
   }
 }
 
@@ -25,57 +88,3 @@ public class Main {
 // Again, we are not going to use Java file I/O; instead use the readValues() method below to
 // simulate getting values from a file – this allows you to type as many values as your class
 // requires, and returns an ArrayList.
-
-        //Player tim = new Player("Tim", 10, 15);
-        //System.out.println(tim.toString());
-        //saveObject(tim);
-
-        //tim.setHitPoints(8);
-        //System.out.println(tim);
-        //tim.setWeapon("Stormbringer");
-        //saveObject(tim);
-        //loadObject(tim);
-        //System.out.println(tim);
-
-    //}
-
-    //public static ArrayList<String> readValues() {
-        //ArrayList<String> values = new ArrayList<String>();
-
-        //Scanner scanner = new Scanner(System.in);
-        //boolean quit = false;
-        //int index = 0;
-        //System.out.println("Choose\n" +
-                //"1 to enter a string\n" +
-                //"0 to quit");
-
-        //while (!quit) {
-            //System.out.print("Choose an option: ");
-            //int choice = scanner.nextInt();
-            //scanner.nextLine();
-            //switch (choice) {
-                //case 0:
-                    //quit = true;
-                    //break;
-                //case 1:
-                    //System.out.print("Enter a string: ");
-                    //String stringInput = scanner.nextLine();
-                    //values.add(index, stringInput);
-                    //index++;
-                    //break;
-            //}
-        //}
-        //return values;
-    //}
-
-    //public static void saveObject(ISaveable objectToSave) {
-        //List<String> dataToSave = objectToSave.write();
-        //for (String dataItem : dataToSave) {
-          //System.out.println("Saving " + objectToSave.write().get(i) + " to storage device");
-        //}
-    //}
-
-    //public static void loadObject(ISaveable objectToLoad) {
-        //ArrayList<String> values = readValues();
-        //objectToLoad.read(values);
-    //}

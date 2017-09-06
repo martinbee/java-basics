@@ -6,46 +6,71 @@ public class Player implements ISaveable {
   private String weapon = "Rusty Sword";
   private int health = 5;
   private int level = 0;
-  private List<String> data = new ArrayList<String>();
 
   public Player(String name, int health, int level) {
     this.name = name;
     this.health = health;
     this.level = level;
-
-    data.add(name);
-    data.add(weapon);
-    data.add(String.valueOf(health));
-    data.add(String.valueOf(level));
   }
 
   public boolean setHealth(int health) {
     this.health = health;
+
     return true;
   }
 
   public boolean setWeapon(String weapon) {
     this.weapon = weapon;
+
     return true;
   }
 
   @Override
-  public void read(List<String> dataSource) {
-    this.data = dataSource;
+  public void read(List<Data> dataSource) {
+    for (Data dataItem : dataSource) {
+      String key = dataItem.getKey();
+
+      switch (key) {
+        case "Name":
+          this.name = dataItem.getValue();
+          break;
+        case "Weapon":
+          this.weapon = dataItem.getValue();
+          break;
+        case "Health":
+          this.health = Integer.parseInt(dataItem.getValue());
+          break;
+        case "Level":
+          this.level = Integer.parseInt(dataItem.getValue());
+          break;
+        default:
+          System.out.println(key + " is not a valid field on Player.");
+          break;
+      }
+    }
   }
 
   @Override
-  public List<String> write() {
-    return data;
+  public List<Data> write() {
+    List<Data> dataToSave = new ArrayList<Data>();
+
+    dataToSave.add(new Data("Name", name));
+    dataToSave.add(new Data("Weapon", weapon));
+    dataToSave.add(new Data("Level", String.valueOf(level)));
+    dataToSave.add(new Data("Health", String.valueOf(health)));
+
+    return dataToSave;
   }
 
   @Override
   public String toString() {
     return (
-      "Player: " + name + ";  " +
-      "Weapon: " + weapon + ";  " +
-      "Health: " + health + ";  " +
-      "Level: " + level
+      "Player: {\n" +
+      "Name: " + name + ",\n" +
+      "Weapon: " + weapon + ",\n" +
+      "Level: " + level + ",\n" +
+      "Health: " + health + ",\n" +
+      "};"
     );
   }
 }

@@ -1,8 +1,8 @@
 import java.util.List;
 
 public interface ISaveable {
-  List<String> write();
-  void read(List<String> dataSource);
+  List<Data> write();
+  void read(List<Data> dataSource);
 }
 
 // Create a simple interface that allows an object to be saved to some sort of storage medium.
