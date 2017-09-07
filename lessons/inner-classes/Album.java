@@ -17,7 +17,7 @@ public class Album {
     songList.addSong(title, duration);
   }
 
-  public class SongList {
+  private class SongList {
     private ArrayList<Song> songs = new ArrayList<Song>();
 
     public Song getSong(String songTitle) {
