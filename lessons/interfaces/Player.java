@@ -25,6 +25,12 @@ public class Player implements ISaveable {
     return true;
   }
 
+  public int receiveDamage(int damage) {
+    health -= damage;
+
+    return health;
+  }
+
   @Override
   public void read(List<Data> dataSource) {
     for (Data dataItem : dataSource) {
