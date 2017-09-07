@@ -4,37 +4,27 @@ public class DataItem extends ListItem {
   }
 
   @Override
-  public boolean hasNext() {
-    if (nextItem == null) return false;
-
-    return true;
-  }
-
-  @Override
-  public boolean hasPrevious() {
-    if (previousItem == null) return false;
-
-    return true;
-  }
-
-  @Override
   public ListItem previous() {
-    return previousItem;
+    return leftLink;
   }
 
   @Override
   public ListItem next() {
-    return nextItem;
+    return rightLink;
   }
 
   @Override
-  public void setPreviousItem(ListItem previousItem) {
-    this.previousItem = previousItem;
+  public ListItem setPrevious(ListItem item) {
+    this.leftLink = item;
+
+    return item;
   }
 
   @Override
-  public void setNextItem(ListItem nextItem) {
-    this.nextItem = nextItem;
+  public ListItem setNext(ListItem item) {
+    this.rightLink = item;
+
+    return item;
   }
 
   @Override
