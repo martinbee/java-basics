@@ -22,6 +22,21 @@ public class Main {
     loadObject(martin);
 
     System.out.println(martin);
+
+    Monster kobold = new Monster("Kobold", "Neutral Evil", 2, 1);
+
+    System.out.println(kobold);
+
+    kobold.setDamage(2);
+
+    kobold.attackPlayer(martin);
+
+    System.out.println(martin);
+
+    saveObject(kobold);
+    loadObject(kobold);
+
+    System.out.println(kobold);
   }
 
   public static List<Data> readValues() {
@@ -30,9 +45,7 @@ public class Main {
 
     boolean quit = false;
 
-    System.out.println("Choose\n");
-    System.out.println("1 to enter a data item");
-    System.out.println("0 to quit");
+    printOptions();
 
     while (!quit) {
       System.out.print("Choose an option: ");
@@ -53,10 +66,19 @@ public class Main {
 
           values.add(new Data(key, value));
           break;
+        default:
+          printOptions();
+          break;
       }
     }
 
     return values;
+  }
+
+  private static void printOptions() {
+    System.out.println("Choose\n");
+    System.out.println("1 to enter a data item");
+    System.out.println("0 to quit");
   }
 
   public static void saveObject(ISaveable objectToSave) {
