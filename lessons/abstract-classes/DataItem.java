@@ -29,7 +29,7 @@ public class DataItem extends ListItem {
 
   @Override
   public int compareTo(ListItem item) {
-    if (item == null) return -1;
+    if (item.getValue() == null) return -1;
 
     String compareValue = (String) item.getValue();
     String castValue = (String) value;

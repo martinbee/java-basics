@@ -65,24 +65,64 @@ public class LinkedList implements DataList {
     return false;
   }
 
-  public void printList() {
+  @Override
+  public boolean removeItem(ListItem item) {
+    if (item != null) System.out.println("Deleting " + item.getValue() + " from the list.");
+
     ListItem currentItem = this.root;
 
     while (currentItem != null) {
-      System.out.println("Item: " + currentItem.getValue());
+      int comparison = currentItem.compareTo(item);
 
-      currentItem = currentItem.next();
+      if (comparison == 0) {
+        ListItem nextItem = currentItem.next();
+        ListItem previousItem = currentItem.previous();
+
+        boolean noNextItem = nextItem == null;
+        boolean noPreviousItem = previousItem == null;
+
+        if (noNextItem && noPreviousItem) {
+          this.root = null;
+
+          return true;
+        }
+
+        if (noNextItem) {
+          previousItem.setNext(null);
+
+          return true;
+        }
+
+        if (noPreviousItem) {
+          nextItem.setPrevious(null);
+
+          return true;
+        }
+
+        previousItem.setNext(nextItem);
+        nextItem.setPrevious(previousItem);
+
+        return true;
+      } else {
+        currentItem = currentItem.next();
+      }
     }
 
-  }
-
-  @Override
-  public boolean removeItem(ListItem item) {
     return false;
   }
 
   @Override
   public void traverse(ListItem root) {
+    ListItem currentItem = root;
 
+    if (currentItem == null) {
+      System.out.println("The list is empty");
+    } else {
+      while (currentItem != null) {
+        System.out.println("Item " + currentItem.getValue());
+
+        currentItem = currentItem.next();
+      }
+    }
   }
 }
