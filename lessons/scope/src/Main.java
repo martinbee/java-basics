@@ -4,7 +4,7 @@ public class Main {
   public static void main (String[] args) {
     System.out.println("Hello");
 
-    X x = new X((new Scanner(System.in)).nextInt());
+    X x = new X(new Scanner(System.in));
     x.timesTable();
   }
 }

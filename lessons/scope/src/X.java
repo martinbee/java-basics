@@ -1,11 +1,13 @@
+import java.util.Scanner;
+
 public class X {
   private int x;
 
   /**
   * @param x
   */
-  public X(int x) {
-    this.x = x;
+  public X(Scanner x) {
+    this.x = x.nextInt();
   }
 
   public void timesTable() {
