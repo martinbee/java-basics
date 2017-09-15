@@ -5,5 +5,6 @@ public class Main {
     System.out.println("hello");
     System.out.println(Series.sum(4));
     System.out.println(Series.factorial(4));
+    System.out.println(Series.fibonacci(3));
   }
 }
